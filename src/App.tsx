@@ -1,23 +1,12 @@
-import { lazy, Suspense } from "react";
-import "./App.css";
+import React from 'react';
+import { HashRouter } from 'react-router-dom';
+import MainContainer from './components/MainContainer';
 
-const CharacterModel = lazy(() => import("./components/Character"));
-const MainContainer = lazy(() => import("./components/MainContainer"));
-import { LoadingProvider } from "./context/LoadingProvider";
-
-const App = () => {
+export const App: React.FC = () => {
   return (
-    <>
-      <LoadingProvider>
-        <Suspense>
-          <MainContainer>
-            <Suspense>
-              <CharacterModel />
-            </Suspense>
-          </MainContainer>
-        </Suspense>
-      </LoadingProvider>
-    </>
+    <HashRouter>
+      <MainContainer />
+    </HashRouter>
   );
 };
 
