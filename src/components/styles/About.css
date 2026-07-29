@@ -14,6 +14,15 @@
   padding-bottom: 0;
   width: 500px;
   max-width: calc(100% - 15px);
+  /* Ensure about text is always visible as default — GSAP may override */
+  opacity: 1;
+  visibility: visible;
+}
+
+.about-me h3,
+.about-me p {
+  opacity: 1;
+  visibility: visible;
 }
 .about-me h3 {
   font-size: 25px;
