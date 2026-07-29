@@ -2,6 +2,7 @@ import * as THREE from "three";
 import { useRef, useMemo, useState, useEffect } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Environment } from "@react-three/drei";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
   BallCollider,
   Physics,
@@ -127,6 +128,7 @@ const TechStack = () => {
   const [isActive, setIsActive] = useState(false);
 
   useEffect(() => {
+    ScrollTrigger.refresh();
     const observer = new IntersectionObserver(
       ([entry]) => {
         setIsActive(entry.isIntersecting);
