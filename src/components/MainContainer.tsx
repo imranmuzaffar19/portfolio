@@ -42,7 +42,7 @@ const MainContainer = ({ children }: PropsWithChildren) => {
             <WhatIDo />
             <Career />
             <Work />
-            {isDesktopView && <TechStack />}
+            <TechStack />
             <Contact />
           </div>
         </div>

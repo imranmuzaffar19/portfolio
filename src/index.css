@@ -166,3 +166,96 @@ body {
     font-size: 40px;
   }
 }
+
+/* ── Mobile TechStack Grid ── */
+@media screen and (max-width: 1024px) {
+  .techstack {
+    height: auto;
+    min-height: unset;
+    padding-bottom: 60px;
+  }
+
+  .tech-mobile-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    padding: 100px 24px 20px;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .tech-mobile-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 16px 8px;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(8px);
+    cursor: default;
+    transition: transform 0.25s ease, background 0.25s ease,
+      box-shadow 0.25s ease;
+    animation: techCardIn 0.5s ease both;
+  }
+
+  .tech-mobile-card:nth-child(1) { animation-delay: 0.05s; }
+  .tech-mobile-card:nth-child(2) { animation-delay: 0.10s; }
+  .tech-mobile-card:nth-child(3) { animation-delay: 0.15s; }
+  .tech-mobile-card:nth-child(4) { animation-delay: 0.20s; }
+  .tech-mobile-card:nth-child(5) { animation-delay: 0.25s; }
+  .tech-mobile-card:nth-child(6) { animation-delay: 0.30s; }
+  .tech-mobile-card:nth-child(7) { animation-delay: 0.35s; }
+  .tech-mobile-card:nth-child(8) { animation-delay: 0.40s; }
+
+  .tech-mobile-card:hover {
+    transform: translateY(-4px) scale(1.05);
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 8px 30px rgba(200, 190, 255, 0.15);
+  }
+
+  .tech-mobile-img {
+    width: 44px;
+    height: 44px;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 8px rgba(200, 190, 255, 0.3));
+  }
+
+  .tech-mobile-label {
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.7);
+    text-align: center;
+    letter-spacing: 0.5px;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  @keyframes techCardIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px) scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .tech-mobile-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    padding: 90px 16px 20px;
+  }
+
+  .tech-mobile-img {
+    width: 36px;
+    height: 36px;
+  }
+
+  .tech-mobile-label {
+    font-size: 9px;
+  }
+}

@@ -12,16 +12,21 @@ import {
 } from "@react-three/rapier";
 
 const textureLoader = new THREE.TextureLoader();
-const imageUrls = [
-  import.meta.env.BASE_URL + "images/react2.webp",
-  import.meta.env.BASE_URL + "images/next2.webp",
-  import.meta.env.BASE_URL + "images/node2.webp",
-  import.meta.env.BASE_URL + "images/express.webp",
-  import.meta.env.BASE_URL + "images/mongo.webp",
-  import.meta.env.BASE_URL + "images/mysql.webp",
-  import.meta.env.BASE_URL + "images/typescript.webp",
-  import.meta.env.BASE_URL + "images/javascript.webp",
+
+const techItems = [
+  { name: "React", url: "react2.webp" },
+  { name: "Next.js", url: "next2.webp" },
+  { name: "Node.js", url: "node2.webp" },
+  { name: "Express", url: "express.webp" },
+  { name: "MongoDB", url: "mongo.webp" },
+  { name: "MySQL", url: "mysql.webp" },
+  { name: "TypeScript", url: "typescript.webp" },
+  { name: "JavaScript", url: "javascript.webp" },
 ];
+
+const imageUrls = techItems.map(
+  (t) => import.meta.env.BASE_URL + "images/" + t.url
+);
 const textures = imageUrls.map((url) => textureLoader.load(url));
 
 const sphereGeometry = new THREE.SphereGeometry(1, 28, 28);
@@ -124,8 +129,27 @@ function Pointer({ vec = new THREE.Vector3(), isActive }: PointerProps) {
   );
 }
 
+/* ── Mobile Grid ── */
+function MobileTechGrid() {
+  return (
+    <div className="tech-mobile-grid">
+      {techItems.map((item) => (
+        <div className="tech-mobile-card" key={item.name}>
+          <img
+            src={import.meta.env.BASE_URL + "images/" + item.url}
+            alt={item.name}
+            className="tech-mobile-img"
+          />
+          <span className="tech-mobile-label">{item.name}</span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 const TechStack = () => {
   const [isActive, setIsActive] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 1024);
 
   useEffect(() => {
     ScrollTrigger.refresh();
@@ -139,10 +163,16 @@ const TechStack = () => {
     if (techElem) {
       observer.observe(techElem);
     }
+
+    const handleResize = () => setIsMobile(window.innerWidth <= 1024);
+    window.addEventListener("resize", handleResize);
+
     return () => {
       observer.disconnect();
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
+
   const materials = useMemo(() => {
     return textures.map(
       (texture) =>
@@ -162,40 +192,44 @@ const TechStack = () => {
     <div className="techstack">
       <h2> My Techstack</h2>
 
-      <Canvas
-        shadows
-        gl={{ alpha: true, stencil: false, depth: false, antialias: false }}
-        camera={{ position: [0, 0, 20], fov: 32.5, near: 1, far: 100 }}
-        onCreated={(state) => (state.gl.toneMappingExposure = 1.5)}
-        className="tech-canvas"
-      >
-        <ambientLight intensity={1} />
-        <spotLight
-          position={[20, 20, 25]}
-          penumbra={1}
-          angle={0.2}
-          color="white"
-          castShadow
-          shadow-mapSize={[512, 512]}
-        />
-        <directionalLight position={[0, 5, -4]} intensity={2} />
-        <Physics gravity={[0, 0, 0]}>
-          <Pointer isActive={isActive} />
-          {spheres.map((props, i) => (
-            <SphereGeo
-              key={i}
-              {...props}
-              material={materials[i % materials.length]}
-              isActive={isActive}
-            />
-          ))}
-        </Physics>
-        <Environment
-          files={import.meta.env.BASE_URL + "models/char_enviorment.hdr"}
-          environmentIntensity={0.5}
-          environmentRotation={[0, 4, 2]}
-        />
-      </Canvas>
+      {isMobile ? (
+        <MobileTechGrid />
+      ) : (
+        <Canvas
+          shadows
+          gl={{ alpha: true, stencil: false, depth: false, antialias: false }}
+          camera={{ position: [0, 0, 20], fov: 32.5, near: 1, far: 100 }}
+          onCreated={(state) => (state.gl.toneMappingExposure = 1.5)}
+          className="tech-canvas"
+        >
+          <ambientLight intensity={1} />
+          <spotLight
+            position={[20, 20, 25]}
+            penumbra={1}
+            angle={0.2}
+            color="white"
+            castShadow
+            shadow-mapSize={[512, 512]}
+          />
+          <directionalLight position={[0, 5, -4]} intensity={2} />
+          <Physics gravity={[0, 0, 0]}>
+            <Pointer isActive={isActive} />
+            {spheres.map((props, i) => (
+              <SphereGeo
+                key={i}
+                {...props}
+                material={materials[i % materials.length]}
+                isActive={isActive}
+              />
+            ))}
+          </Physics>
+          <Environment
+            files={import.meta.env.BASE_URL + "models/char_enviorment.hdr"}
+            environmentIntensity={0.5}
+            environmentRotation={[0, 4, 2]}
+          />
+        </Canvas>
+      )}
     </div>
   );
 };
