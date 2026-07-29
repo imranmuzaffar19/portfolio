@@ -1,5 +1,6 @@
 import * as THREE from "three";
 import { DRACOLoader, GLTF, GLTFLoader } from "three-stdlib";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { setCharTimeline, setAllTimeline } from "../../utils/GsapScroll";
 import { decryptFile } from "./decrypt";
 
@@ -27,7 +28,11 @@ const setCharacter = (
           blobUrl,
           async (gltf) => {
             character = gltf.scene;
-            await renderer.compileAsync(character, camera, scene);
+            try {
+              await renderer.compileAsync(character, camera, scene);
+            } catch (e) {
+              console.warn("Compile async skipped:", e);
+            }
             character.traverse((child: any) => {
               if (child.isMesh) {
                 const mesh = child as THREE.Mesh;
@@ -37,10 +42,17 @@ const setCharacter = (
               }
             });
             resolve(gltf);
-            setCharTimeline(character, camera);
-            setAllTimeline();
-            character!.getObjectByName("footR")!.position.y = 3.36;
-            character!.getObjectByName("footL")!.position.y = 3.36;
+            try {
+              setCharTimeline(character, camera);
+              setAllTimeline();
+              ScrollTrigger.refresh();
+              const footR = character.getObjectByName("footR");
+              if (footR) footR.position.y = 3.36;
+              const footL = character.getObjectByName("footL");
+              if (footL) footL.position.y = 3.36;
+            } catch (err) {
+              console.warn("Timeline setup notice:", err);
+            }
             dracoLoader.dispose();
           },
           undefined,

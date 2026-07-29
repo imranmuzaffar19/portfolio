@@ -11,6 +11,10 @@
   height: 100vh;
   box-sizing: border-box;
   will-change: transform;
+  overflow: hidden;
+  position: relative;
+  z-index: 5;
+  margin-bottom: 50px;
 }
 .work-container {
   margin: auto;
@@ -18,6 +22,7 @@
   flex-direction: column;
   height: 100%;
   align-content: stretch;
+  overflow: hidden;
 }
 .work-flex {
   width: 100%;
@@ -26,6 +31,7 @@
   margin-left: -80px;
   padding-right: 120px;
   position: relative;
+  touch-action: pan-y;
 }
 .work-box {
   padding: 80px;
@@ -44,7 +50,7 @@
 .work-flex::before,
 .work-flex::after {
   content: "";
-  width: calc(50000vw);
+  width: 100vw;
   height: 1px;
   background-color: #363636;
   position: absolute;

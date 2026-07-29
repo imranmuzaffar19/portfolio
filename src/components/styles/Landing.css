@@ -158,7 +158,7 @@
 }
 .landing-intro {
   position: absolute;
-  z-index: 9;
+  z-index: 20;
   top: 12%;
   left: 0;
 }
@@ -189,7 +189,7 @@
   transform: translateX(50%);
   bottom: 40px;
   top: inherit;
-  z-index: 9;
+  z-index: 20;
 }
 .landing-info h3 {
   font-size: 22px;
@@ -295,7 +295,8 @@ h2.landing-info-h2 {
   .character-model {
     height: 100vh;
     bottom: 0;
-    z-index: 11;
+    z-index: 1;
+    pointer-events: none;
     position: fixed;
   }
   .character-model::after,

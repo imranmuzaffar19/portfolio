@@ -87,24 +87,19 @@ const WhatIDo = () => {
             <div className="what-corner"></div>
 
             <div className="what-content-in">
-              <h3>DEVELOP</h3>
-              <h4>Description</h4>
+              <h3>AI & DATA SCIENCE</h3>
+              <h4>Specialization</h4>
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas
-                quia aliquid laboriosam ducimus sit molestiae.
+                Developing intelligent systems, machine learning models, statistical analysis, and data-driven solutions through an interdisciplinary DYOD pathway.
               </p>
               <h5>Skillset & tools</h5>
               <div className="what-content-flex">
-                <div className="what-tags">JavaScript</div>
-                <div className="what-tags">TypeScript</div>
-                <div className="what-tags">Three.js</div>
-                <div className="what-tags">React</div>
-                <div className="what-tags">Css</div>
-                <div className="what-tags">Node.js</div>
-                <div className="what-tags">Next.js</div>
-                <div className="what-tags">Express.js</div>
-                <div className="what-tags">PHP</div>
-                <div className="what-tags">MySql</div>
+                <div className="what-tags">Python</div>
+                <div className="what-tags">Machine Learning</div>
+                <div className="what-tags">Data Analysis</div>
+                <div className="what-tags">Statistical Modeling</div>
+                <div className="what-tags">AI Concepts</div>
+                <div className="what-tags">Research</div>
               </div>
               <div className="what-arrow"></div>
             </div>
@@ -128,22 +123,19 @@ const WhatIDo = () => {
             </div>
             <div className="what-corner"></div>
             <div className="what-content-in">
-              <h3>DESIGN</h3>
-              <h4>Description</h4>
+              <h3>MEDIA & PRODUCTION</h3>
+              <h4>Experience (6+ Years)</h4>
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas
-                quia aliquid laboriosam ducimus sit molestiae
+                Directing, filming, color grading, and editing high-impact documentaries, cultural performances, and educational media campaigns.
               </p>
               <h5>Skillset & tools</h5>
               <div className="what-content-flex">
-                <div className="what-tags">Blender</div>
-                <div className="what-tags">Zbrush</div>
-                <div className="what-tags">UI Design</div>
-                <div className="what-tags">Motion</div>
-                <div className="what-tags">Rigging</div>
-                <div className="what-tags">3D Animation</div>
-                <div className="what-tags">Character Design</div>
-                <div className="what-tags">Modelling</div>
+                <div className="what-tags">Videography</div>
+                <div className="what-tags">Video Editing</div>
+                <div className="what-tags">Photo Editing</div>
+                <div className="what-tags">Directing</div>
+                <div className="what-tags">Documentary Storytelling</div>
+                <div className="what-tags">Hardware & Arduino</div>
               </div>
               <div className="what-arrow"></div>
             </div>

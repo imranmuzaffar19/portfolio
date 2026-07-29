@@ -1,7 +1,8 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs@plugin-react' // or whatever vite plugin you are using
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
 
+// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: './', // <-- ADD THIS LINE
-})
+  base: './', // Ensures relative pathing for GitHub Pages / Vercel
+});

@@ -10,14 +10,18 @@ const Loading = ({ percent }: { percent: number }) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [clicked, setClicked] = useState(false);
 
-  if (percent >= 100) {
-    setTimeout(() => {
-      setLoaded(true);
-      setTimeout(() => {
-        setIsLoaded(true);
-      }, 1000);
-    }, 600);
-  }
+  useEffect(() => {
+    if (percent >= 100) {
+      const t1 = setTimeout(() => {
+        setLoaded(true);
+        const t2 = setTimeout(() => {
+          setIsLoaded(true);
+        }, 300);
+        return () => clearTimeout(t2);
+      }, 200);
+      return () => clearTimeout(t1);
+    }
+  }, [percent]);
 
   useEffect(() => {
     import("./utils/initialFX").then((module) => {
@@ -28,7 +32,7 @@ const Loading = ({ percent }: { percent: number }) => {
             module.initialFX();
           }
           setIsLoading(false);
-        }, 900);
+        }, 300);
       }
     });
   }, [isLoaded]);
@@ -97,38 +101,46 @@ export const setProgress = (setLoading: (value: number) => void) => {
 
   let interval = setInterval(() => {
     if (percent <= 50) {
-      let rand = Math.round(Math.random() * 5);
-      percent = percent + rand;
+      let rand = Math.round(Math.random() * 8) + 2;
+      percent = Math.min(99, percent + rand);
       setLoading(percent);
     } else {
       clearInterval(interval);
       interval = setInterval(() => {
-        percent = percent + Math.round(Math.random());
-        setLoading(percent);
-        if (percent > 91) {
+        if (percent < 99) {
+          percent = Math.min(99, percent + Math.round(Math.random() * 3) + 1);
+          setLoading(percent);
+        } else {
           clearInterval(interval);
         }
-      }, 2000);
+      }, 40);
     }
-  }, 100);
+  }, 40);
+
+  const fallbackTimeout = setTimeout(() => {
+    clearInterval(interval);
+    setLoading(100);
+  }, 2500);
 
   function clear() {
+    clearTimeout(fallbackTimeout);
     clearInterval(interval);
     setLoading(100);
   }
 
   function loaded() {
+    clearTimeout(fallbackTimeout);
     return new Promise<number>((resolve) => {
       clearInterval(interval);
       interval = setInterval(() => {
         if (percent < 100) {
-          percent++;
+          percent = Math.min(100, percent + 10);
           setLoading(percent);
         } else {
           resolve(percent);
           clearInterval(interval);
         }
-      }, 2);
+      }, 5);
     });
   }
   return { loaded, percent, clear };

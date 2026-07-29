@@ -1,4 +1,5 @@
 import "./styles/About.css";
+import { PERSONAL_INFO } from "../data/personalData";
 
 const About = () => {
   return (
@@ -6,9 +7,7 @@ const About = () => {
       <div className="about-me">
         <h3 className="title">About Me</h3>
         <p className="para">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic quis
-          dolores numquam iusto Ratione earum ducimus autem id iure pariatur
-          dolorum quae maiores.
+          {PERSONAL_INFO.bio}
         </p>
       </div>
     </div>
