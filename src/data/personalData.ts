@@ -19,7 +19,7 @@ export const PROJECTS = [
     category: "Hardware & Embedded Systems",
     tools: "Arduino, IR Sensors, Servo Motors, C++",
     description: "Designed and implemented an automated toll gate system utilizing Arduino, IR break sensors, servo motors, and ultrasonic sensors for vehicle detection.",
-    image: "/images/placeholder.webp"
+    image: import.meta.env.BASE_URL + "images/placeholder.webp"
   },
   {
     id: "02",
@@ -27,7 +27,7 @@ export const PROJECTS = [
     category: "Documentary & Film Production",
     tools: "Directing, Video Editing, Storytelling",
     description: "Directed and edited a documentary showcasing the SAGG ECO Village initiative carried out by IUST students, highlighting sustainable living.",
-    image: "/images/placeholder.webp"
+    image: import.meta.env.BASE_URL + "images/placeholder.webp"
   },
   {
     id: "03",
@@ -35,7 +35,7 @@ export const PROJECTS = [
     category: "Media & Performing Arts",
     tools: "Directing, Video Editing, Media Production",
     description: "Directed and edited a documentary capturing the skit performances on Global Literature produced by IUST DYOD students.",
-    image: "/images/placeholder.webp"
+    image: import.meta.env.BASE_URL + "images/placeholder.webp"
   },
   {
     id: "04",
@@ -43,7 +43,7 @@ export const PROJECTS = [
     category: "Data Analysis & Social Research",
     tools: "Python, Data Analysis, Statistical Modeling",
     description: "Conducted a research study analyzing digital habits, media consumption patterns, and the psychological impact of doomscrolling among IUST students.",
-    image: "/images/placeholder.webp"
+    image: import.meta.env.BASE_URL + "images/placeholder.webp"
   },
   {
     id: "05",
@@ -51,7 +51,7 @@ export const PROJECTS = [
     category: "Sustainability & Leadership",
     tools: "Project Management, Environmental Leadership",
     description: "Spearheaded an environmental initiative at IUST aimed at organic waste management, promoting sustainable composting on campus.",
-    image: "/images/placeholder.webp"
+    image: import.meta.env.BASE_URL + "images/placeholder.webp"
   }
 ];
 
